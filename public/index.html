@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FairForm AI | Student Portal</title>
+    <style>
+        :root {
+            font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+            color: #1c2942;
+            background: #f5f7fc;
+            --purple: #604de8;
+            --border: #e6eaf3;
+            --muted: #7d899c
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            outline: 3px solid #a99fff;
+            outline-offset: 2px
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        .top {
+            height: 74px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 0 max(20px, calc((100vw - 1180px)/2))
+        }
+
+        .logo {
+            font-weight: 850;
+            font-size: 23px;
+            letter-spacing: -1px;
+            white-space: nowrap
+        }
+
+        .logo span {
+            color: var(--purple)
+        }
+
+        .subbrand {
+            font-size: 10px;
+            color: #97a0b0;
+            font-weight: 700;
+            letter-spacing: 1px
+        }
+
+        .iconbtn {
+            border: 0;
+            background: transparent;
+            color: #25324b;
+            font-size: 23px;
+            padding: 10px;
+            border-radius: 12px
+        }
+
+        .iconbtn:hover,
+        .navitem:hover {
+            background: #f0efff
+        }
+
+        .spacer {
+            flex: 1
+        }
+
+        .avatar {
+            border: 0;
+            background: #eae7ff;
+            color: #5845dc;
+            border-radius: 13px;
+            padding: 12px;
+            font-weight: 800
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 36px 22px 70px
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            color: var(--purple);
+            letter-spacing: 2px;
+            font-weight: 850;
+            text-transform: uppercase
+        }
+
+        .title {
+            font-size: clamp(29px, 4vw, 43px);
+            letter-spacing: -1.4px;
+            line-height: 1.15;
+            margin: 12px 0
+        }
+
+        .muted {
+            color: var(--muted);
+            line-height: 1.65
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 23px;
+            box-shadow: 0 10px 35px #202c5109;
+            padding: 27px
+        }
+
+        .stat .symbol {
+            font-size: 25px
+        }
+
+        .stat p {
+            color: var(--muted);
+            margin: 17px 0 8px
+        }
+
+        .stat strong {
+            font-size: 31px
+        }
+
+        .stat small {
+            display: block;
+            color: #19946b;
+            margin-top: 9px
+        }
+
+        .hero {
+            margin-bottom: 30px
+        }
+
+        .sectiontitle {
+            font-size: 24px;
+            margin: 35px 0 17px
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            background: var(--purple);
+            border: 0;
+            color: #fff;
+            border-radius: 12px;
+            padding: 13px 21px;
+            font-weight: 750;
+            min-height: 46px
+        }
+
+        .btn:hover {
+            background: #4c3bd1
+        }
+
+        .btn.light {
+            background: #efedff;
+            color: #5140d4
+        }
+
+        .btn.ghost {
+            background: #fff;
+            color: #4f5a70;
+            border: 1px solid var(--border)
+        }
+
+        .apps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px
+        }
+
+        .appicon {
+            width: 57px;
+            height: 57px;
+            background: #f0edff;
+            border-radius: 17px;
+            display: grid;
+            place-items: center;
+            font-size: 29px
+        }
+
+        .app h3 {
+            font-size: 21px;
+            margin: 22px 0 8px
+        }
+
+        .app p {
+            min-height: 58px
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 8px 13px;
+            border-radius: 50px;
+            background: #e9f8ef;
+            color: #16885d;
+            font-size: 12px;
+            font-weight: 800
+        }
+
+        .app footer {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .panelgrid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 22px
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px;
+            margin: 24px 0
+        }
+
+        .detail {
+            background: #f7f8fd;
+            border: 1px solid #edf0f7;
+            border-radius: 13px;
+            padding: 17px
+        }
+
+        .detail small {
+            display: block;
+            color: var(--muted);
+            margin-bottom: 7px
+        }
+
+        .timeline {
+            display: grid;
+            gap: 21px;
+            margin: 26px 0
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            align-items: center
+        }
+
+        .step b {
+            background: #eeebff;
+            color: var(--purple);
+            padding: 13px;
+            border-radius: 13px;
+            min-width: 48px;
+            text-align: center
+        }
+
+        .step strong {
+            display: block
+        }
+
+        .step small {
+            color: var(--muted)
+        }
+
+        .back {
+            background: none;
+            border: 0;
+            color: var(--purple);
+            font-weight: 750;
+            margin-bottom: 18px;
+            padding: 8px 0
+        }
+
+        .sidebar {
+            position: fixed;
+            z-index: 45;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: min(320px, 90vw);
+            background: #fff;
+            transform: translateX(-105%);
+            transition: transform .25s;
+            overflow: auto;
+            padding: 23px;
+            box-shadow: 10px 0 40px #19264a15
+        }
+
+        .sidebar.open {
+            transform: translateX(0)
+        }
+
+        .shade {
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            background: #121a32a8
+        }
+
+        .profile {
+            padding: 22px 12px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+            border-radius: 18px
+        }
+
+        .profile strong {
+            display: block;
+            margin: 12px 0 4px
+        }
+
+        .profile small {
+            color: var(--muted)
+        }
+
+        .navitem {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            width: 100%;
+            border: 0;
+            background: none;
+            text-align: left;
+            border-radius: 12px;
+            padding: 15px 12px;
+            color: #33405a;
+            font-weight: 650;
+            margin: 4px 0
+        }
+
+        .navitem.active {
+            background: #eeeaff;
+            color: var(--purple)
+        }
+
+        .navitem .ico {
+            font-size: 20px;
+            width: 25px
+        }
+
+        .sidebar hr {
+            border: 0;
+            border-top: 1px solid var(--border);
+            margin: 20px 0
+        }
+
+        .authscreen {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: linear-gradient(135deg, #f5f6ff, #e8e7ff);
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            overflow: auto
+        }
+
+        .authbox {
+            background: white;
+            width: min(440px, 100%);
+            border: 1px solid var(--border);
+            border-radius: 27px;
+            padding: 38px;
+            box-shadow: 0 22px 80px #2820591c
+        }
+
+        .authbox h1 {
+            font-size: 30px;
+            margin: 22px 0 6px
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            font-weight: 650;
+            font-size: 13px
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            border: 1px solid #dbe1ed;
+            border-radius: 11px;
+            padding: 13px;
+            width: 100%;
+            background: white;
+            color: #1c2942
+        }
+
+        .field textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        .fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px
+        }
+
+        .fields .wide {
+            grid-column: 1/-1
+        }
+
+        .formsection {
+            margin: 26px 0
+        }
+
+        .formsection h3 {
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .notice {
+            background: #f0f4ff;
+            border: 1px solid #e0e7ff;
+            padding: 16px;
+            border-radius: 13px;
+            color: #4a5b81
+        }
+
+        .queuehero {
+            text-align: center;
+            padding: 38px 20px
+        }
+
+        .queuehero .num {
+            font-size: clamp(60px, 10vw, 100px);
+            font-weight: 850;
+            color: var(--purple);
+            line-height: 1
+        }
+
+        .progress {
+            height: 12px;
+            border-radius: 20px;
+            background: #e9e7fa;
+            overflow: hidden;
+            margin: 24px 0
+        }
+
+        .progress>div {
+            height: 100%;
+            background: linear-gradient(90deg, #6855f2, #a096ff);
+            transition: width .5s
+        }
+
+        .metricrow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 22px 0
+        }
+
+        .metric {
+            background: #f8f9fd;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center
+        }
+
+        .metric strong {
+            display: block;
+            font-size: 24px
+        }
+
+        .metric small {
+            color: var(--muted)
+        }
+
+        .success {
+            text-align: center;
+            max-width: 650px;
+            margin: auto
+        }
+
+        .success .check {
+            font-size: 65px
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            background: #202a44;
+            color: white;
+            border-radius: 12px;
+            padding: 14px 20px;
+            z-index: 120;
+            box-shadow: 0 10px 30px #101c3040
+        }
+
+        .miniapp {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin: 12px 0
+        }
+
+        .miniapp .btn {
+            margin-left: auto
+        }
+
+        .tag {
+            color: #19946b;
+            font-size: 13px;
+            font-weight: 750
+        }
+
+        canvas {
+            width: 100%;
+            height: 240px
+        }
+
+        footer.note {
+            margin-top: 35px;
+            color: #8994a8;
+            font-size: 12px
+        }
+
+        @media(max-width:900px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .apps {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .panelgrid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:600px) {
+            .container {
+                padding: 25px 16px 60px
+            }
+
+            .top {
+                padding: 0 13px
+            }
+
+            .subbrand {
+                display: none
+            }
+
+            .grid,
+            .apps,
+            .fields {
+                grid-template-columns: 1fr
+            }
+
+            .fields .wide {
+                grid-column: auto
+            }
+
+            .metricrow {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .card {
+                padding: 22px
+            }
+
+            .authbox {
+                padding: 27px
+            }
+
+            .details {
+                grid-template-columns: 1fr
+            }
+
+            .miniapp {
+                flex-wrap: wrap
+            }
+
+            .miniapp .btn {
+                margin-left: 0;
+                width: 100%
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 11px 10px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        th {
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: .5px;
+            text-transform: uppercase
+        }
+
+        .tablewrap {
+            overflow-x: auto
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 11px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800
+        }
+
+        .badge.allow {
+            background: #e9f8ef;
+            color: #16885d
+        }
+
+        .badge.warn {
+            background: #fff4de;
+            color: #a86a00
+        }
+
+        .badge.slow {
+            background: #ffe9e9;
+            color: #c0392b
+        }
+
+        .cfg {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 14px;
+            align-items: end
+        }
+
+        @media(max-width:900px) {
+            .cfg {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loginScreen" class="authscreen">
+        <form id="loginForm" class="authbox">
+            <div class="logo">✦ Fair<span>Form</span> <small style="font-size:13px;color:#888">AI</small></div>
+            <h1>Student Login</h1>
+            <p class="muted">Sign in to access your academic portal.</p>
+            <div style="display:grid;gap:18px;margin:26px 0"><label class="field">Student ID<input id="loginId" required
+                        maxlength="30" placeholder="e.g. 23CS101" autocomplete="username"></label><label
+                    class="field">Student Name<input id="loginName" required maxlength="80"
+                        placeholder="Enter your full name"></label><label class="field">Password<input
+                        id="loginPassword" required type="password" placeholder="Enter password"
+                        autocomplete="current-password"></label></div><button class="btn" style="width:100%"
+                type="submit">Login →</button>
+            <p class="muted" style="font-size:12px;margin-bottom:0">Hackathon demo: use any student ID, name and
+                password. No account is created.</p>
+        </form>
+    </div>
+    <header class="top"><button id="menuBtn" class="iconbtn" aria-label="Open navigation"
+            aria-expanded="false">☰</button>
+        <div class="logo">✦ Fair<span>Form</span> <span class="subbrand">STUDENT PORTAL</span></div>
+        <div class="spacer"></div><button id="topAvatar" class="avatar" aria-label="Open profile">ST</button>
+    </header>
+    <div id="shade" class="shade hidden"></div>
+    <aside id="sidebar" class="sidebar" aria-label="Main navigation">
+        <div class="row"><strong class="logo" style="font-size:19px">Student Portal</strong><button id="closeBtn"
+                class="iconbtn" aria-label="Close navigation">✕</button></div>
+        <div class="profile">
+            <div class="avatar" style="display:inline-block">👤</div><strong id="profileName">Student</strong><small
+                id="profileId">Student ID</small><br><small id="profileCourse">Academic account</small>
+        </div>
+        <nav id="sideNav"></nav>
+        <hr><button class="navitem" data-action="switch"><span class="ico">🔄</span>Switch Account</button><button
+            class="navitem" data-action="logout"><span class="ico">↪</span>Sign Out</button>
+    </aside>
+    <main class="container">
+        <section id="home" class="view">
+            <div class="hero">
+                <div class="eyebrow" id="welcome">WELCOME BACK</div>
+                <h1 class="title">Your academic journey,<br>simplified.</h1>
+                <p class="muted">A secure, organized place for your academic services and submissions.</p>
+            </div>
+            <div class="grid">
+                <div class="card stat">
+                    <div class="symbol">📄</div>
+                    <p>Available Forms</p><strong>03</strong><small>Academic services</small>
+                </div>
+                <div class="card stat">
+                    <div class="symbol">✅</div>
+                    <p>My Submissions</p><strong id="submissionCount">00</strong><small>Completed applications</small>
+                </div>
+                <div class="card stat">
+                    <div class="symbol">⚡</div>
+                    <p>Request Allowance</p><strong id="allowance">05/05</strong><small>Demo limit: 5 requests /
+                        minute</small>
+                </div>
+                <div class="card stat">
+                    <div class="symbol">🛡️</div>
+                    <p>Fair Access</p><strong>Active</strong><small>Queue-based access demo</small>
+                </div>
+            </div>
+            <h2 class="sectiontitle">Student overview</h2>
+            <div class="card">
+                <div class="row">
+                    <div>
+                        <h2 style="margin:0 0 7px">Welcome to FairForm AI</h2>
+                        <p class="muted" style="margin:0">Choose an academic service from the navigation menu to begin.
+                        </p>
+                    </div><button class="btn" data-page="exam">Go to Exam Registration →</button>
+                </div>
+            </div>
+        </section>
+        <section id="service" class="view hidden"><button class="back" data-page="home">← Back to dashboard</button>
+            <div class="eyebrow">ACADEMIC SERVICES · 2026–27</div>
+            <h1 id="serviceTitle" class="title">Exam Registration</h1>
+            <p id="serviceDescription" class="muted"></p>
+            <div class="apps" id="serviceCards"></div>
+        </section>
+        <section id="overview" class="view hidden"><button class="back" data-page="service">← Back to
+                application</button>
+            <div class="eyebrow">APPLICATION OVERVIEW</div>
+            <h1 id="overviewTitle" class="title">Application Details</h1>
+            <div class="panelgrid">
+                <div class="card">
+                    <div class="eyebrow">APPLICATION INFORMATION</div>
+                    <h2>Everything you need to get started.</h2>
+                    <p class="muted">Review the application information before entering the fair-access process.</p>
+                    <div class="details">
+                        <div class="detail"><small>Academic Year</small><strong>2026–27</strong></div>
+                        <div class="detail"><small>Application</small><strong id="overviewName"></strong></div>
+                        <div class="detail"><small>Access</small><strong>Fair queue enabled</strong></div>
+                        <div class="detail"><small>Deadline</small><strong id="overviewDeadline"></strong></div>
+                    </div>
+                    <div class="row" style="background:#f7f8fd;border-radius:14px;padding:18px">
+                        <div><strong>Ready to apply?</strong>
+                            <div class="muted" style="font-size:12px">Continue to your application workspace.</div>
+                        </div><button class="btn" data-page="workspace">Apply Now →</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="eyebrow">YOUR APPLICATION JOURNEY</div>
+                    <h2>How it works</h2>
+                    <div class="timeline">
+                        <div class="step"><b>01</b>
+                            <div><strong>Application Details</strong><small>Review registration information</small>
+                            </div>
+                        </div>
+                        <div class="step"><b>02</b>
+                            <div><strong>Student Workspace</strong><small>Confirm your selected service</small></div>
+                        </div>
+                        <div class="step"><b>03</b>
+                            <div><strong>Fair Waiting Queue</strong><small>Access is provided in arrival order</small>
+                            </div>
+                        </div>
+                        <div class="step"><b>04</b>
+                            <div><strong>Fill & Submit</strong><small>Complete the required application fields</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notice">🛡️ You are already signed in. No second login is required.</div>
+                </div>
+            </div>
+        </section>
+        <section id="workspace" class="view hidden"><button class="back" data-page="overview">← Application
+                overview</button>
+            <div class="eyebrow">STUDENT WORKSPACE</div>
+            <h1 class="title">Your application dashboard</h1>
+            <p class="muted" id="workspaceGreeting"></p>
+            <div class="panelgrid">
+                <div class="card">
+                    <h2>Selected application</h2>
+                    <div class="miniapp"><span style="font-size:34px" id="workspaceIcon">📝</span>
+                        <div><strong id="workspaceService"></strong>
+                            <div class="muted">Academic Year 2026–27</div>
+                        </div>
+                    </div>
+                    <p class="muted">Confirm your selection to join the fair-access waiting room. You will be able to
+                        fill the form when your turn is ready.</p><button id="joinQueue" class="btn">Open Form
+                        →</button>
+                </div>
+                <div class="card">
+                    <h2>Other academic services</h2>
+                    <div id="otherServices"></div>
+                </div>
+            </div>
+        </section>
+        <section id="queue" class="view hidden"><button class="back" id="exitQueue">← Exit waiting room</button>
+            <div class="card">
+                <div class="eyebrow">FAIR ACCESS · VIRTUAL WAITING ROOM</div>
+                <div class="queuehero">
+                    <div style="font-size:42px">◷</div>
+                    <h1>You're in the queue</h1>
+                    <p class="muted">Your place is reserved while this page remains open.</p>
+                    <div class="num" id="queuePosition">15</div>
+                    <div class="muted">Current queue position</div>
+                </div>
+                <div class="metricrow">
+                    <div class="metric"><strong id="ahead">14</strong><small>Students ahead</small></div>
+                    <div class="metric"><strong id="wait">~ 2 min</strong><small>Estimated wait</small></div>
+                    <div class="metric"><strong id="queueStatus">Waiting</strong><small>Queue status</small></div>
+                </div>
+                <div class="progress">
+                    <div id="queueBar" style="width:5%"></div>
+                </div>
+                <div class="row">
+                    <p class="muted" id="queueMessage">Processing requests in arrival order. Please keep this tab open.
+                    </p><button class="btn hidden" id="continueForm">Continue to Form →</button>
+                </div>
+                <div id="decisionNote" class="notice hidden" style="margin-bottom:14px"></div>
+                <div class="notice">Queue positions and fairness decisions come from the FairForm backend.</div>
+            </div>
+        </section>
+        <section id="formPage" class="view hidden"><button class="back" data-page="workspace">← Back to
+                workspace</button>
+            <div class="eyebrow">ACADEMIC APPLICATION</div>
+            <h1 class="title" id="formTitle">Registration Form</h1>
+            <p class="muted">Fields marked * are required. Check all details before submitting.</p>
+            <form id="applicationForm" class="card">
+                <div id="formFields"></div><label class="field"
+                    style="margin-top:20px;flex-direction:row;align-items:center"><input type="checkbox" required
+                        style="width:auto"> I confirm the details are accurate and complete. *</label>
+                <div class="row" style="margin-top:25px"><button type="button" class="btn ghost"
+                        data-page="workspace">Cancel</button><button type="submit" class="btn">Submit Application
+                        →</button></div>
+            </form>
+        </section>
+        <section id="success" class="view hidden">
+            <div class="card success">
+                <div class="check">✅</div>
+                <h1>Application submitted</h1>
+                <p class="muted" id="successMessage"></p>
+                <div class="row" style="justify-content:center"><button class="btn" data-page="submissions">View My
+                        Submissions</button><button class="btn light" data-page="home">Back to Dashboard</button></div>
+            </div>
+        </section>
+        <section id="submissions" class="view hidden">
+            <div class="eyebrow">MY RECORDS</div>
+            <h1 class="title">My Submissions</h1>
+            <div class="card" id="submissionList"></div>
+        </section>
+        <section id="settings" class="view hidden">
+            <div class="eyebrow">ACCOUNT SETTINGS</div>
+            <h1 class="title">Profile & Preferences</h1>
+            <form id="settingsForm" class="card" style="max-width:650px">
+                <div class="fields"><label class="field">Student ID<input id="settingsId" disabled></label><label
+                        class="field">Student Name<input id="settingsName" required></label><label
+                        class="field wide">Course / Department<input id="settingsCourse"
+                            placeholder="e.g. B.E. Computer Science"></label></div><button class="btn"
+                    style="margin-top:23px">Save Changes</button>
+            </form>
+        </section>
+        <section id="admin" class="view hidden">
+            <div class="eyebrow">OPERATOR CONSOLE · LIVE</div>
+            <h1 class="title">Admin Dashboard</h1>
+            <p class="muted">Live view of the fairness monitor. Change the rules, review sessions and clear a mistaken
+                warning.</p>
+            <div class="grid">
+                <div class="card stat">
+                    <p>Sessions Seen</p><strong id="aSessions">0</strong>
+                </div>
+                <div class="card stat">
+                    <p>In Queue</p><strong id="aQueue">0</strong>
+                </div>
+                <div class="card stat">
+                    <p>Warned / Slowed</p><strong id="aFlagged">0</strong>
+                </div>
+                <div class="card stat">
+                    <p>Total Requests</p><strong id="aRequests">0</strong>
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px">
+                <h2>Traffic activity · last 2 minutes</h2><canvas id="chart" aria-label="Live traffic graph"></canvas>
+            </div>
+            <div class="card" style="margin-top:20px">
+                <h2>Fairness rules</h2>
+                <form id="configForm">
+                    <div class="cfg"><label class="field">Window (seconds)<input id="cfgWindow" type="number" min="5"
+                                max="3600" required></label><label class="field">Warn at (requests)<input id="cfgWarn"
+                                type="number" min="1" required></label><label class="field">Slow at (requests)<input
+                                id="cfgSlow" type="number" min="2" required></label><label class="field">Slowdown
+                            (places back)<input id="cfgPenalty" type="number" min="0" required></label><label
+                            class="field">Scripted if faster than (ms)<input id="cfgScripted" type="number" min="0"
+                                required></label></div><button class="btn" style="margin-top:18px" type="submit">Save
+                        rules</button>
+                </form>
+            </div>
+            <div class="card" style="margin-top:20px">
+                <h2>Sessions</h2>
+                <div class="tablewrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Requests in window</th>
+                                <th>Decision</th>
+                                <th>Queue</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="sessionRows"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px">
+                <h2>Recent request history</h2>
+                <div class="tablewrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Student</th>
+                                <th>Action</th>
+                                <th>Decision</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyRows"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <footer class="note">FairForm AI · Academic Year 2026–27 · Front-end demonstration</footer>
+    </main>
+    <div id="toast" class="toast hidden" role="status"></div>
+    <script>
+        'use strict';
+        const $ = id => document.getElementById(id);
+        const API = (location.protocol === 'file:' || (location.hostname === 'localhost' && location.port !== '3000')) ? 'http://localhost:3000/api' : '/api';
+        let token = sessionStorage.getItem('fairform_token') || null;
+        let stats = { remaining: 5, limit: 5, submissions: 0 };
+        async function api(path, opts = {}) { try { const res = await fetch(API + path, { method: opts.method || 'GET', headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: 'Bearer ' + token } : {}) }, body: opts.body ? JSON.stringify(opts.body) : undefined }); let data = {}; try { data = await res.json() } catch (e) { } if (res.status === 401 && token && user) { signOut(); notify('Session expired. Please log in again.') } return { ok: res.ok, status: res.status, data } } catch (e) { return { ok: false, status: 0, data: { error: 'Cannot reach the backend. Is it running?' } } } }
+        function updateStats() { $('allowance').textContent = String(stats.remaining).padStart(2, '0') + '/' + String(stats.limit).padStart(2, '0'); $('submissionCount').textContent = String(stats.submissions).padStart(2, '0') }
+        async function syncStats() { if (!token) return; const r = await api('/me/stats'); if (r.ok) { stats = r.data; updateStats() } }
+        function showDecision(d) { const el = $('decisionNote'); if (!d || d.decision === 'allow' || !d.message) { el.classList.add('hidden'); return } el.textContent = (d.decision === 'slow' ? '⏳ ' : '⚠️ ') + d.message; el.classList.remove('hidden') }
+        const services = { exam: { name: 'Exam Registration', icon: '📝', description: 'Register for your upcoming semester examinations.', deadline: 'Oct 30', status: 'Open Now' }, scholarship: { name: 'Scholarship Application', icon: '🎓', description: 'Apply for merit-based financial aid and scholarships.', deadline: 'Nov 12', status: 'Limited Slots' }, course: { name: 'Course Enrollment', icon: '📚', description: 'Choose electives and enroll in next semester courses.', deadline: 'Nov 20', status: 'Enrollment Open' } };
+        let user = null, selected = 'exam', currentPage = 'home', queueTimer = null, queuePosition = 15, queueReady = false, requests = [], submissions = [];
+        try { submissions = JSON.parse(localStorage.getItem('fairform_records') || '[]') } catch (e) { submissions = [] }
+        const nav = [['home', '▦', 'Dashboard'], ['exam', '☷', 'Exam Registration'], ['scholarship', '🎓', 'Scholarship Application'], ['course', '▤', 'Course Enrollment'], ['submissions', '✓', 'My Submissions'], ['settings', '⚙', 'Settings'], ['admin', '▥', 'Admin Dashboard']];
+        function notify(msg) { $('toast').textContent = msg; $('toast').classList.remove('hidden'); clearTimeout(window.toastTimer); window.toastTimer = setTimeout(() => $('toast').classList.add('hidden'), 3200) }
+        function closeSide() { $('sidebar').classList.remove('open'); $('shade').classList.add('hidden'); $('menuBtn').setAttribute('aria-expanded', 'false') }
+        function openSide() { $('sidebar').classList.add('open'); $('shade').classList.remove('hidden'); $('menuBtn').setAttribute('aria-expanded', 'true') }
+        function refreshNav() { $('sideNav').innerHTML = nav.map(([key, icon, label]) => `<button type="button" class="navitem ${((['exam', 'scholarship', 'course'].includes(key) && key === selected && ['service', 'overview', 'workspace', 'queue', 'formPage'].includes(currentPage)) || (key === currentPage)) ? 'active' : ''}" data-page="${key}"><span class="ico">${icon}</span>${label}</button>`).join('') }
+        function page(id) { if (!user) { $('loginScreen').classList.remove('hidden'); return } if (services[id]) { selected = id; id = 'service' } if (id !== 'queue' && queueTimer) { clearInterval(queueTimer); queueTimer = null } if (!$(id) || !$(id).classList.contains('view')) return; document.querySelectorAll('.view').forEach(el => el.classList.add('hidden')); $(id).classList.remove('hidden'); currentPage = id; closeSide(); refreshNav(); window.scrollTo({ top: 0, behavior: 'instant' }); if (id === 'service') renderService(); if (id === 'overview') renderOverview(); if (id === 'workspace') renderWorkspace(); if (id === 'formPage') renderForm(); if (id === 'submissions') renderSubmissions(); if (id === 'settings') renderSettings(); if (id === 'admin') loadAdmin(true) }
+        function renderService() { const s = services[selected]; $('serviceTitle').textContent = s.name; $('serviceDescription').textContent = s.description; $('serviceCards').innerHTML = `<article class="card app"><div class="appicon">${s.icon}</div><h3>${s.name}</h3><p class="muted">${s.description}</p><span class="pill">● ${s.status}</span><footer><span class="muted">Closes ${s.deadline}</span><button class="btn" data-page="overview">Apply Now →</button></footer></article>` }
+        function renderOverview() { const s = services[selected]; $('overviewTitle').textContent = s.name; $('overviewName').textContent = s.name; $('overviewDeadline').textContent = s.deadline }
+        function renderWorkspace() { const s = services[selected]; $('workspaceGreeting').textContent = `Welcome, ${user.name}. Your student ID is ${user.id}.`; $('workspaceIcon').textContent = s.icon; $('workspaceService').textContent = s.name; $('otherServices').innerHTML = Object.entries(services).filter(([key]) => key !== selected).map(([key, s]) => `<div class="miniapp"><span style="font-size:25px">${s.icon}</span><strong>${s.name}</strong><button class="btn light" data-page="${key}">Open</button></div>`).join('') }
+        async function startQueue() { const r = await api('/queue/join', { method: 'POST', body: { service: selected } }); if (!r.ok) { notify(r.data.error || 'Could not join the queue.'); return } queueReady = false; showDecision(r.data.decision); page('queue'); applyQueue(r.data.queue); syncStats(); queueTimer = setInterval(pollQueue, 1500) }
+        async function pollQueue() { const r = await api('/queue/status'); if (r.status === 404) { clearInterval(queueTimer); queueTimer = null; notify('Your queue spot expired. Please join again.'); page('workspace'); return } if (!r.ok) return; showDecision(r.data.decision); applyQueue(r.data); syncStats(); if (r.data.ready) { clearInterval(queueTimer); queueTimer = null } }
+        function applyQueue(q) { queuePosition = q.position; queueReady = q.ready; updateQueue(); $('queueMessage').textContent = q.message }
+        function updateQueue() { $('queuePosition').textContent = queuePosition; $('ahead').textContent = queuePosition - 1; $('wait').textContent = queuePosition === 1 ? 'Ready' : '~ ' + Math.max(1, Math.ceil((queuePosition - 1) * 1.8 / 60)) + ' min'; $('queueStatus').textContent = queuePosition === 1 ? 'Ready' : 'In queue'; $('queueBar').style.width = Math.min(100, Math.max(5, 100 - (queuePosition - 1) / 14 * 95)) + '%'; $('continueForm').classList.toggle('hidden', !queueReady); updateStats() }
+        const departments = ['Computer Science and Engineering (CSE)', 'Information Technology (IT)', 'Artificial Intelligence and Data Science (AI & DS)', 'Artificial Intelligence and Machine Learning (AI & ML)', 'Cyber Security', 'Electronics and Communication Engineering (ECE)', 'Electrical and Electronics Engineering (EEE)', 'Mechanical Engineering', 'Civil Engineering', 'Chemical Engineering', 'Biomedical Engineering', 'Biotechnology', 'Automobile Engineering', 'Mechatronics Engineering', 'Aerospace Engineering', 'Robotics and Automation', 'Computer Science and Business Systems', 'MBA', 'MCA', 'Other'];
+        function field(label, name, type = 'text', opts = '') { return `<label class="field">${label} *<input name="${name}" type="${type}" ${opts} required></label>` }
+        function select(label, name, options) { return `<label class="field">${label} *<select name="${name}" required><option value="">Select ${label.toLowerCase()}</option>${options.map(v => `<option value="${v}">${v}</option>`).join('')}</select></label>` }
+        function area(label, name) { return `<label class="field wide">${label} *<textarea name="${name}" required></textarea></label>` }
+        function renderForm() { const s = services[selected]; $('formTitle').textContent = s.name + ' Form'; let common = `<div class="formsection"><h3>01 · Student Information</h3><div class="fields">${field('Full Name', 'fullName', 'text', `value="${escapeAttr(user.name)}"`)}${field('Student ID', 'studentId', 'text', `value="${escapeAttr(user.id)}" readonly`)}${field('University Register Number', 'registerNumber')}${field('Date of Birth', 'dob', 'date')}${select('Gender', 'gender', ['Male', 'Female', 'Other', 'Prefer not to say'])}${field('Email Address', 'email', 'email')}${field('Mobile Number', 'mobile', 'tel', 'pattern="[0-9]{10}" title="Enter a 10-digit phone number"')}${select('Department', 'department', departments)}${select('Degree / Programme', 'degree', ['B.E.', 'B.Tech.', 'B.Sc.', 'B.Com.', 'B.A.', 'M.E.', 'M.Tech.', 'MBA', 'MCA', 'Other'])}${select('Year of Study', 'year', ['1', '2', '3', '4', '5'])}${select('Current Semester', 'semester', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])}${field('Section', 'section')}</div></div>`; let extra = ''; if (selected === 'exam') extra = `${select('Examination Type', 'examType', ['Regular', 'Arrear / Backlog', 'Supplementary', 'Improvement'])}${select('Examination Semester', 'examSemester', ['1', '2', '3', '4', '5', '6', '7', '8'])}${select('Regulation', 'regulation', ['2021', '2022', '2023', '2024', '2025', '2026', 'Other'])}${field('Subject Codes (comma-separated)', 'subjectCodes')}${area('Subject Names (comma-separated)', 'subjectNames')}${select('Exam Mode', 'examMode', ['Written / Offline', 'Online', 'Practical'])}`; if (selected === 'scholarship') extra = `${select('Scholarship Category', 'category', ['Merit Based', 'Need Based', 'First Graduate', 'Sports', 'Government', 'Community', 'Other'])}${field('Current CGPA', 'cgpa', 'number', 'min="0" max="10" step="0.01"')}${field('Annual Family Income (₹)', 'income', 'number', 'min="0"')}${select('Residence', 'residence', ['Day Scholar', 'Hosteller'])}${field('Bank Account Holder', 'accountHolder')}${field('Bank Name', 'bankName')}${field('IFSC Code', 'ifsc', 'text', 'pattern="[A-Za-z]{4}0[A-Za-z0-9]{6}"')}${area('Reason for Scholarship', 'reason')}`; if (selected === 'course') extra = `${select('Enrollment Category', 'enrollmentCategory', ['Core Course', 'Professional Elective', 'Open Elective', 'Skill Course', 'Value Added'])}${field('Course Code', 'courseCode')}${field('Course Title', 'courseTitle')}${select('Credits', 'credits', ['1', '2', '3', '4', '5', '6'])}${select('Preferred Semester', 'preferredSemester', ['1', '2', '3', '4', '5', '6', '7', '8'])}${select('Preferred Batch', 'batch', ['Morning', 'Afternoon', 'Any'])}${select('Learning Mode', 'learningMode', ['On Campus', 'Online', 'Hybrid'])}${field('Prerequisites Completed (enter None if not applicable)', 'prerequisites')}${area('Reason for Enrollment', 'reason')}`; $('formFields').innerHTML = common + `<div class="formsection"><h3>02 · ${s.name} Details</h3><div class="fields">${extra}</div></div>` }
+        function escapeAttr(v) { return String(v).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;') }
+        async function renderSubmissions() { $('submissionList').innerHTML = '<p class="muted">Loading…</p>'; const r = await api('/submissions'); const mine = r.ok ? r.data.submissions : []; $('submissionList').innerHTML = mine.length ? mine.map(s => `<div class="miniapp"><span style="font-size:26px">✅</span><div><strong>${escapeAttr(s.service)}</strong><div class="muted">${escapeAttr(new Date(s.date).toLocaleString())} · ${escapeAttr(s.reference)}</div></div><span class="tag">Submitted</span></div>`).join('') : '<p class="muted">No submissions yet. Choose an application from the sidebar to get started.</p>' }
+        function renderSettings() { $('settingsId').value = user.id; $('settingsName').value = user.name; $('settingsCourse').value = user.course || '' }
+        function drawChart(series) { const c = $('chart'), w = Math.max(280, c.clientWidth), h = 240, d = window.devicePixelRatio || 1; c.width = w * d; c.height = h * d; const ctx = c.getContext('2d'); ctx.scale(d, d); ctx.strokeStyle = '#e5e8f2'; for (let i = 0; i < 5; i++) { let y = 20 + i * 47; ctx.beginPath(); ctx.moveTo(25, y); ctx.lineTo(w - 15, y); ctx.stroke() } let values = (series && series.length ? series : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]); const mx = Math.max(...values, 1); values = values.map(v => v / mx * 100); ctx.beginPath(); values.forEach((v, i) => { let x = 25 + i * (w - 45) / 11, y = 218 - v * 1.8; i ? ctx.lineTo(x, y) : ctx.moveTo(x, y) }); ctx.strokeStyle = '#604de8'; ctx.lineWidth = 3; ctx.stroke() }
+        async function loadAdmin(force) { const r = await api('/admin/overview'); if (!r.ok) return; const d = r.data; $('aSessions').textContent = d.totals.sessions; $('aQueue').textContent = d.totals.inQueue; $('aFlagged').textContent = d.totals.flagged; $('aRequests').textContent = d.totals.requests; drawChart(d.series); if (force || !$('configForm').contains(document.activeElement)) { $('cfgWindow').value = d.config.windowSec; $('cfgWarn').value = d.config.warnAt; $('cfgSlow').value = d.config.slowAt; $('cfgPenalty').value = d.config.penalty; $('cfgScripted').value = d.config.scriptedMs } const badge = x => `<span class="badge ${x}">${x === 'allow' ? 'Allow' : x === 'warn' ? 'Warn' : 'Slow'}</span>`; $('sessionRows').innerHTML = d.sessions.length ? d.sessions.map(s => `<tr><td>${escapeAttr(s.name)} <span class="muted">(${escapeAttr(s.id)})</span></td><td>${s.requests}</td><td>${badge(s.decision)}</td><td>${escapeAttr(s.queue)}</td><td><button class="btn ghost" data-clear="${escapeAttr(s.id)}">Clear</button></td></tr>`).join('') : '<tr><td colspan="5" class="muted">No sessions yet.</td></tr>'; $('historyRows').innerHTML = d.history.length ? d.history.map(h => `<tr><td>${escapeAttr(new Date(h.t).toLocaleTimeString())}</td><td>${escapeAttr(h.studentId)}</td><td>${escapeAttr(h.action)}</td><td>${badge(h.decision)}</td></tr>`).join('') : '<tr><td colspan="4" class="muted">No requests yet.</td></tr>' }
+        function signOut() { if (queueTimer) clearInterval(queueTimer); queueTimer = null; if (token) api('/logout', { method: 'POST' }); token = null; sessionStorage.removeItem('fairform_token'); user = null; queueReady = false; sessionStorage.removeItem('fairform_demo_user'); closeSide(); $('loginForm').reset(); $('loginScreen').classList.remove('hidden') }
+        $('loginForm').addEventListener('submit', async e => { e.preventDefault(); const id = $('loginId').value.trim(), name = $('loginName').value.trim(), pass = $('loginPassword').value; if (!id || !name || !pass) return; const r = await api('/login', { method: 'POST', body: { id, name, password: pass } }); if (!r.ok) { notify(r.data.error || 'Login failed.'); return } token = r.data.token; sessionStorage.setItem('fairform_token', token); user = r.data.user; sessionStorage.setItem('fairform_demo_user', JSON.stringify(user)); $('loginPassword').value = ''; $('loginScreen').classList.add('hidden'); $('profileName').textContent = name; $('profileId').textContent = 'ID: ' + id; $('topAvatar').textContent = name.trim().split(/\s+/).map(x => x[0]).slice(0, 2).join('').toUpperCase(); $('welcome').textContent = 'WELCOME BACK, ' + name.toUpperCase(); syncStats(); page('home') });
+        $('menuBtn').addEventListener('click', openSide); $('topAvatar').addEventListener('click', openSide); $('closeBtn').addEventListener('click', closeSide); $('shade').addEventListener('click', closeSide); document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSide() });
+        document.addEventListener('click', e => { const a = e.target.closest('[data-action]'); if (a) { if (a.dataset.action === 'logout' || a.dataset.action === 'switch') signOut(); return } const b = e.target.closest('[data-page]'); if (b) { page(b.dataset.page) } });
+        $('joinQueue').addEventListener('click', startQueue); $('continueForm').addEventListener('click', () => { if (queueReady) page('formPage') }); $('exitQueue').addEventListener('click', () => { api('/queue/leave', { method: 'POST' }); queueReady = false; page('workspace') });
+        $('applicationForm').addEventListener('submit', async e => { e.preventDefault(); const data = Object.fromEntries(new FormData(e.currentTarget)); const r = await api('/submit', { method: 'POST', body: { service: selected, details: data } }); if (!r.ok) { notify(r.data.error || 'Submission failed.'); if (r.status === 403) { queueReady = false; page('workspace') } syncStats(); return } queueReady = false; $('successMessage').textContent = `Your ${r.data.service} has been submitted. Reference number: ${r.data.reference}`; await syncStats(); page('success') });
+        $('settingsForm').addEventListener('submit', async e => { e.preventDefault(); const r = await api('/profile', { method: 'PUT', body: { name: $('settingsName').value.trim(), course: $('settingsCourse').value.trim() } }); if (!r.ok) { notify(r.data.error || 'Could not save profile.'); return } user = r.data.user; sessionStorage.setItem('fairform_demo_user', JSON.stringify(user)); $('profileName').textContent = user.name; $('profileCourse').textContent = user.course || 'Academic account'; $('welcome').textContent = 'WELCOME BACK, ' + user.name.toUpperCase(); notify('Profile updated') });
+        $('configForm').addEventListener('submit', async e => { e.preventDefault(); const r = await api('/admin/config', { method: 'PUT', body: { windowSec: +$('cfgWindow').value, warnAt: +$('cfgWarn').value, slowAt: +$('cfgSlow').value, penalty: +$('cfgPenalty').value, scriptedMs: +$('cfgScripted').value } }); notify(r.ok ? 'Rules saved' : (r.data.error || 'Could not save rules')); loadAdmin(true) });
+        document.addEventListener('click', async e => { const c = e.target.closest('[data-clear]'); if (!c) return; const r = await api('/admin/clear/' + encodeURIComponent(c.dataset.clear), { method: 'POST' }); notify(r.ok ? 'Warning cleared' : (r.data.error || 'Could not clear')); loadAdmin() });
+        setInterval(syncStats, 3000); setInterval(() => { if (currentPage === 'admin') loadAdmin() }, 3000); try { const saved = JSON.parse(sessionStorage.getItem('fairform_demo_user') || 'null'); if (saved && saved.id && saved.name) { user = saved; $('loginScreen').classList.add('hidden'); $('profileName').textContent = user.name; $('profileId').textContent = 'ID: ' + user.id; $('profileCourse').textContent = user.course || 'Academic account'; $('topAvatar').textContent = user.name.split(/\s+/).map(x => x[0]).slice(0, 2).join('').toUpperCase(); $('welcome').textContent = 'WELCOME BACK, ' + user.name.toUpperCase() } } catch (e) { } refreshNav(); updateStats(); syncStats();
+    </script>
+</body>
+
+</html>
